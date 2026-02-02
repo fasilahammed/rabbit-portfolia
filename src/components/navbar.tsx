@@ -30,9 +30,9 @@ export const Navbar = () => {
 
             {/* Top Right Actions */}
             <div className="flex items-center gap-12 pointer-events-auto">
-                <Link
+                <a
                     href="#contact"
-                    className="group flex items-center gap-3 text-xs font-pixel tracking-[0.2em] text-white hover:text-gray-400 transition-colors uppercase"
+                    className="group flex items-center gap-3 text-xs font-pixel tracking-[0.2em] text-white hover:text-gray-400 transition-colors uppercase cursor-pointer"
                 >
                     Contact
                     <motion.div
@@ -41,7 +41,7 @@ export const Navbar = () => {
                     >
                         <ArrowUpRight className="w-4 h-4" />
                     </motion.div>
-                </Link>
+                </a>
 
                 {/* Grid Icon (Menu Toggle) */}
                 <button className="grid grid-cols-2 gap-[3px] group p-1">

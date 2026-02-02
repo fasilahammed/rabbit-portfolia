@@ -6,29 +6,34 @@ import { Code2, Database, Layout, Server, Cloud, Cpu, Globe, Terminal } from "lu
 
 const skillCategories = [
     {
-        title: ".NET Ecosystem",
-        icon: <Terminal className="w-6 h-6 text-emerald-400" />,
-        skills: ["C#", "ASP.NET Core", "Web API", "Dapper", "Entity Framework", "SQL Server", "T-SQL", "Stored Procedures", "Swagger"]
+        title: "Languages",
+        icon: <Code2 className="w-6 h-6 text-yellow-400" />,
+        skills: ["C#", "JavaScript", "SQL", "T-SQL", "HTML5", "CSS3"]
     },
     {
-        title: "Frontend Development",
+        title: "Frontend",
         icon: <Layout className="w-6 h-6 text-blue-400" />,
-        skills: ["JavaScript", "React", "Next.js", "Tailwind CSS", "Bootstrap", "HTML5", "CSS3", "Framer Motion"]
+        skills: ["React 19", "Next.js 15", "Redux Toolkit", "Tailwind v4", "Bootstrap", "Framer Motion", "EmailJS", "Lucide React"]
     },
     {
-        title: "Tools & Workflow",
-        icon: <Cloud className="w-6 h-6 text-cyan-400" />,
-        skills: ["Git", "GitHub", "Visual Studio", "Postman", "Figma", "Notion", "Jira"]
+        title: "Backend",
+        icon: <Server className="w-6 h-6 text-emerald-400" />,
+        skills: ["ASP.NET Core", "Web API", "JWT", "SMTP", "CSV Processing"]
     },
     {
-        title: "This Project Stack",
-        icon: <Code2 className="w-6 h-6 text-purple-400" />,
-        skills: ["Next.js 15", "React 19", "Tailwind v4", "Framer Motion", "EmailJS", "Lucide React"]
+        title: "Database",
+        icon: <Database className="w-6 h-6 text-purple-400" />,
+        skills: ["SQL Server", "EF Core", "Dapper", "Stored Procedures"]
     },
     {
         title: "Architecture",
         icon: <Cpu className="w-6 h-6 text-orange-400" />,
         skills: ["MVC", "Clean Architecture", "RESTful APIs", "SOLID Principles", "OOP"]
+    },
+    {
+        title: "Tools",
+        icon: <Cloud className="w-6 h-6 text-cyan-400" />,
+        skills: ["Git", "GitHub", "Visual Studio", "VS Code", "Postman", "Swagger", "Figma", "Notion", "Jira", "Razorpay"]
     }
 ];
 

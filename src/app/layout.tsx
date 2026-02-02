@@ -28,18 +28,21 @@ import { RabbitCursor } from "@/components/rabbit-cursor";
 
 import { ScrollNav } from "@/components/scroll-nav";
 
+import { Background } from "@/components/background";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${silkscreen.variable} antialiased selection:bg-white selection:text-black noise cursor-none`}
       >
         <Preloader />
         <RabbitCursor />
+        <Background />
         <ScrollNav />
         {children}
       </body>

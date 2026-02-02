@@ -2,26 +2,22 @@
 
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowUpRight, Mail, Linkedin, Github } from "lucide-react";
-import { Button } from "./ui/button";
+import { ArrowUpRight, Mail, Linkedin, Github, Download, Terminal, Database, Cpu } from "lucide-react";
 
 export const Hero = () => {
     const heroRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    // Optimized background gradient that updates via GPU-accelerated motion values
-    // avoiding heavy main-thread style recalculations
     const bgGradient = useMotionTemplate`radial-gradient(
         circle 800px at ${mouseX}px ${mouseY}px,
-        rgba(120, 119, 198, 0.08) 0%,
-        rgba(88, 86, 214, 0.04) 20%,
+        rgba(16, 185, 129, 0.05) 0%,
+        rgba(5, 150, 105, 0.02) 20%,
         transparent 60%
     )`;
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            // Update motion values directly without triggering React renders
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
         };
@@ -34,67 +30,42 @@ export const Hero = () => {
         <section
             id="home"
             ref={heroRef}
-            className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 px-6 overflow-hidden"
+            className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 overflow-hidden bg-black"
         >
-            {/* Background is handled by globals.css .stars class */}
-            <div className="absolute inset-0 z-[-1] stars" />
-
-            {/* Optimized Spotlight Effect */}
+            {/* Background Effects */}
+            <div className="absolute inset-0 z-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
             <motion.div
                 className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-300"
                 style={{ background: bgGradient }}
             />
 
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 text-center flex flex-col items-center"
-            >
-                {/* Header tag */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 1 }}
-                    className="mb-8 md:mb-12 text-[10px] md:text-xs text-emerald-400/80 font-mono tracking-[0.4em] flex items-center gap-2 uppercase"
-                >
-                    <span>{`{`}</span>
-                    <span className="text-gray-300">Full Stack .NET Developer & Architect</span>
-                    <span>{`}`}</span>
-                </motion.div>
+            <div className="container mx-auto max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                {/* Left Content - Typography */}
+                <div className="animate-in fade-in slide-in-from-left-4 duration-700">
+                    <div className="flex items-center gap-3 mb-8">
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        <span className="text-emerald-500 font-mono text-xs tracking-widest uppercase">System Online // Ready for Production</span>
+                    </div>
 
-                {/* Huge Pixel Name - Stacked for impact */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col items-center justify-center mb-12 tracking-tighter leading-[0.85] drop-shadow-[0_0_80px_rgba(255,255,255,0.1)]"
-                >
-                    <span className="text-[15vw] md:text-[11rem] lg:text-[13rem] font-pixel text-white">FASIL</span>
-                    <span className="text-[13vw] md:text-[9rem] lg:text-[11rem] font-pixel text-slate-400/20 italic mt-[-2vw]">AHAMMED</span>
-                </motion.h1>
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-6 leading-[0.9]">
+                        FASIL <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-800">AHAMMED</span>
+                    </h1>
 
-                {/* Sub-headline */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2, duration: 1 }}
-                    className="max-w-2xl text-center text-gray-400 text-sm md:text-lg font-light mb-16 px-4 leading-relaxed"
-                >
-                    Engineering scalable enterprise solutions with <span className="text-emerald-400 font-medium">.NET Core</span>, <span className="text-white">Cloud Architecture</span>, and modern <span className="text-white">React</span> interfaces.
-                </motion.p>
+                    <div className="h-px w-32 bg-emerald-500/50 mb-8" />
 
-                {/* View Our Work Button Block */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4, duration: 1 }}
-                    className="flex flex-col items-center gap-10"
-                >
-                    <div className="flex flex-col md:flex-row items-center gap-6">
+                    <p className="text-xl md:text-2xl text-gray-400 font-light max-w-xl leading-relaxed mb-10">
+                        <span className="text-white font-medium">Full Stack Architect</span> specialized in high-performance <span className="text-emerald-400">.NET Core</span> backends and immersive <span className="text-blue-400">React</span> ecosystems.
+                    </p>
+
+                    <div className="flex flex-wrap gap-6">
                         <a
                             href="#projects"
-                            className="group relative flex items-center justify-center px-12 py-5 border border-white/20 rounded-full bg-black/40 backdrop-blur-md hover:border-white hover:bg-white/5 transition-all duration-700 overflow-hidden"
+                            aria-label="View My Work"
+                            className="group relative flex items-center justify-center px-8 md:px-12 py-4 md:py-5 border border-white/20 rounded-full bg-black/40 backdrop-blur-md hover:border-white hover:bg-white/5 transition-all duration-700 overflow-hidden w-full md:w-auto"
                         >
                             <span className="relative z-10 text-xs md:text-sm font-medium tracking-[0.25em] uppercase text-white">View My Work</span>
                             <ArrowUpRight className="relative z-10 ml-3 w-4 h-4 group-hover:rotate-45 transition-transform duration-500 ease-out text-white" />
@@ -104,7 +75,8 @@ export const Hero = () => {
                             href="/fasil ahammedkm-Ats.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative flex items-center justify-center px-12 py-5 border border-emerald-500/20 rounded-full bg-emerald-950/10 backdrop-blur-md hover:border-emerald-500/50 hover:bg-emerald-900/20 transition-all duration-700 overflow-hidden"
+                            aria-label="Download CV"
+                            className="group relative flex items-center justify-center px-8 md:px-12 py-4 md:py-5 border border-emerald-500/20 rounded-full bg-emerald-950/10 backdrop-blur-md hover:border-emerald-500/20 hover:bg-emerald-900/20 transition-all duration-700 overflow-hidden w-full md:w-auto"
                         >
                             <span className="relative z-10 text-xs md:text-sm font-medium tracking-[0.25em] uppercase text-emerald-100">Download CV</span>
                             <div className="relative z-10 ml-3 w-4 h-4 border-l border-b border-emerald-100 transform -rotate-45 group-hover:translate-y-1 transition-transform duration-500" />
@@ -117,62 +89,70 @@ export const Hero = () => {
                         <SocialIcon href="https://github.com/fasilahammed" icon={<Github size={36} strokeWidth={1.5} />} label="Github" />
                         <SocialIcon href="https://www.linkedin.com/in/fasil-ahammed-40696736a/" icon={<Linkedin size={36} strokeWidth={1.5} />} label="LinkedIn" />
                     </div>
+                </div>
+
+                {/* Right Content - Abstract Tech Visual */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.2 }}
+                    className="hidden lg:flex justify-center items-center relative"
+                >
+                    {/* Decorative Circles */}
+                    <div className="absolute w-[500px] h-[500px] border border-white/5 rounded-full animate-[spin_60s_linear_infinite]" />
+                    <div className="absolute w-[350px] h-[350px] border border-dashed border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+
+                    {/* Tech Stack Floating Chips */}
+                    <TechChip icon={<Terminal />} label=".NET Core API" x={-120} y={-80} delay={0.5} />
+                    <TechChip icon={<Cpu />} label="Clean Arch" x={140} y={-40} delay={0.7} />
+                    <TechChip icon={<Database />} label="SQL Server" x={-100} y={100} delay={0.9} />
+
+                    <div className="relative z-10 p-8 glass-card rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md">
+                        <code className="text-sm font-mono text-emerald-400">
+                            class Architect {'{'}<br />
+                            &nbsp;&nbsp;Stack = "Full-Stack";<br />
+                            &nbsp;&nbsp;Focus = "Scalability";<br />
+                            &nbsp;&nbsp;Status = "Available";<br />
+                            {'}'}
+                        </code>
+                    </div>
                 </motion.div>
-            </motion.div>
-
-            {/* Bottom Year Indicator */}
-            <div className="absolute bottom-12 left-12 text-sm md:text-xl font-medium text-gray-400 font-sans tracking-widest hidden md:block">
-                © 2026
             </div>
 
-            {/* Bottom Service Indicator */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-[10px] font-medium text-gray-400 font-sans tracking-[0.5em] uppercase hidden md:block">
-                Services
-            </div>
-
-            {/* Mascot in bottom right */}
+            {/* Scroll Indicator */}
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.4 }}
-                whileHover={{ opacity: 1, scale: 1.2 }}
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-12 right-12 cursor-pointer hidden md:block"
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
             >
-                <svg
-                    width="48"
-                    height="48"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white"
-                >
-                    <path
-                        d="M8 2H10V6H8V2ZM14 2H16V6H14V2ZM6 6H18V10H20V18H18V20H6V18H4V10H6V6ZM8 10V12H10V10H8ZM14 10V12H16V10H14ZM10 14H14V16H10V14Z"
-                        fill="currentColor"
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                    />
-                </svg>
+                <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-emerald-500 to-transparent" />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-500/50">Scroll</span>
             </motion.div>
-
         </section>
     );
 };
 
-const SocialIcon = ({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) => (
-    <motion.a
+const TechChip = ({ icon, label, x, y, delay }: any) => (
+    <motion.div
+        initial={{ opacity: 0, x: 0, y: 0 }}
+        animate={{ opacity: 1, x, y }}
+        transition={{ delay, duration: 1, type: "spring" }}
+        className="absolute z-20 flex items-center gap-2 px-4 py-2 bg-black/50 border border-white/10 rounded-full backdrop-blur-md shadow-xl"
+    >
+        <div className="text-emerald-400 w-4 h-4">{icon}</div>
+        <span className="text-xs font-mono text-white/80 whitespace-nowrap">{label}</span>
+    </motion.div>
+);
+
+const SocialIcon = ({ href, icon, label }: any) => (
+    <a
         href={href}
         target="_blank"
-        rel="noreferrer"
-        initial={{ opacity: 0.5 }}
-        whileHover={{ opacity: 1, y: -8 }}
-        className="flex flex-col items-center gap-4 text-white transition-all duration-300 group"
+        rel="noopener noreferrer"
+        aria-label={label}
+        className="text-gray-400 hover:text-emerald-400 transition-colors duration-300"
     >
-        <div className="p-2 border border-white/5 rounded-full group-hover:border-white/20 transition-colors">
-            {icon}
-        </div>
-        <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-            {label}
-        </span>
-    </motion.a>
+        {icon}
+    </a>
 );

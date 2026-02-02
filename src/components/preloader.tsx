@@ -3,23 +3,44 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const bootWeb = [
+    "Initializing Core Systems...",
+    "Loading Neural Interface...",
+    "Optimizing GPU threads...",
+    "Establishing Secure Connection...",
+    "Syncing Digital Assets...",
+    "System Ready."
+];
+
 export const Preloader = () => {
     const [progress, setProgress] = useState(0);
+    const [textIndex, setTextIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        // Text cycling
+        const textInterval = setInterval(() => {
+            setTextIndex(prev => (prev + 1) % bootWeb.length);
+        }, 800);
+
+        // Progress loader
         const interval = setInterval(() => {
             setProgress((prev) => {
-                if (prev >= 100) {
+                const next = prev + Math.floor(Math.random() * 5) + 1;
+                if (next >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => setIsLoading(false), 500);
+                    clearInterval(textInterval);
+                    setTimeout(() => setIsLoading(false), 800);
                     return 100;
                 }
-                return prev + Math.floor(Math.random() * 10) + 1;
+                return next;
             });
-        }, 100);
+        }, 150);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearInterval(textInterval);
+        };
     }, []);
 
     return (
@@ -31,59 +52,27 @@ export const Preloader = () => {
                         y: '-100%',
                         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
                     }}
-                    className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center"
+                    className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center font-mono"
                 >
-                    <div className="relative flex flex-col items-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="mb-8"
-                        >
-                            <svg
-                                width="60"
-                                height="60"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="text-white animate-pulse"
-                            >
-                                <path
-                                    d="M8 2H10V6H8V2ZM14 2H16V6H14V2ZM6 6H18V10H20V18H18V20H6V18H4V10H6V6ZM8 10V12H10V10H8ZM14 10V12H16V10H14ZM10 14H14V16H10V14Z"
-                                    fill="currentColor"
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </motion.div>
-
-                        <div className="overflow-hidden">
-                            <motion.h2
-                                className="text-4xl md:text-6xl font-pixel text-white"
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                {progress}%
-                            </motion.h2>
+                    <div className="w-64">
+                        <div className="flex justify-between items-end mb-2">
+                            <span className="text-emerald-500 text-xs tracking-widest uppercase">System Boot</span>
+                            <span className="text-white text-2xl md:text-4xl font-bold">{progress}%</span>
                         </div>
 
-                        <div className="w-48 h-[2px] bg-white/10 mt-4 relative overflow-hidden">
+                        <div className="h-1 bg-white/10 rounded-full overflow-hidden mb-4">
                             <motion.div
-                                className="absolute inset-0 bg-white"
-                                initial={{ x: "-100%" }}
-                                animate={{ x: `${progress - 100}%` }}
-                                transition={{ ease: "linear" }}
+                                className="h-full bg-emerald-500"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${progress}%` }}
                             />
                         </div>
 
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="mt-4 text-[10px] uppercase tracking-[0.4em] text-gray-500 font-mono"
-                        >
-                            Initializing Experience
-                        </motion.p>
+                        <div className="h-6 flex items-center">
+                            <span className="text-gray-500 text-xs animate-pulse">
+                                {'>'} {bootWeb[textIndex]}
+                            </span>
+                        </div>
                     </div>
                 </motion.div>
             )}
