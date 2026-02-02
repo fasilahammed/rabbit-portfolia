@@ -26,6 +26,8 @@ export const metadata: Metadata = {
 import { Preloader } from "@/components/preloader";
 import { RabbitCursor } from "@/components/rabbit-cursor";
 
+import { ScrollNav } from "@/components/scroll-nav";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +40,7 @@ export default function RootLayout({
       >
         <Preloader />
         <RabbitCursor />
+        <ScrollNav />
         {children}
       </body>
     </html>

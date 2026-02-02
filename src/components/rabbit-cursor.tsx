@@ -49,7 +49,7 @@ export const RabbitCursor = () => {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 pointer-events-none z-[50]"
+            className="fixed top-0 left-0 pointer-events-none z-[50] hidden md:block"
             style={{
                 x: cursorX,
                 y: cursorY,

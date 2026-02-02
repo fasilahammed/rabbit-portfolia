@@ -10,17 +10,20 @@ export const Contact = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError(null);
 
         try {
             if (!formRef.current) return;
 
+            // Updated with credentials from your screenshots
             await emailjs.sendForm(
-                'service_default',
-                'template_default',
+                'service_6t73qxr',
+                'template_hdw4zgb',
                 formRef.current,
                 'pDKpttsGzOGY75O0Z'
             );
@@ -28,6 +31,7 @@ export const Contact = () => {
             formRef.current.reset();
         } catch (error) {
             console.error(error);
+            setError("Failed to send message. Please check your connection or try again later.");
         } finally {
             setLoading(false);
         }
@@ -61,6 +65,9 @@ export const Contact = () => {
                         <div className="py-12 flex flex-col items-center gap-4">
                             <CheckCircle2 className="w-12 h-12 text-white" />
                             <p className="text-xl font-light text-white">Message successfully dispatched.</p>
+                            <Button onClick={() => setSuccess(false)} variant="outline" className="mt-4 text-white border-white/20 hover:bg-white/10">
+                                Send another
+                            </Button>
                         </div>
                     ) : (
                         <form ref={formRef} onSubmit={handleSubmit} className="space-y-12">
@@ -69,6 +76,12 @@ export const Contact = () => {
                                 <InputGroup label="Channel" name="from_email" placeholder="Email" type="email" />
                             </div>
                             <InputGroup label="Intent" name="message" placeholder="Tell me about your project..." textarea />
+
+                            {error && (
+                                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded text-red-200 text-sm">
+                                    {error}
+                                </div>
+                            )}
 
                             <button
                                 type="submit"
