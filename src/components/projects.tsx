@@ -28,7 +28,7 @@ const projects = [
         description: "A high-performance interactive portfolio engineered with Next.js 15 (App Router) and React 19. Features a custom 'Rabbit Cursor' with physics-based follow mechanics, GPU-accelerated animations using Framer Motion, and a reusable component system built on Tailwind v4. Includes a Scroll Navigation Observer, fully responsive layouts, and a server-less email system integrated via EmailJS. The UI strictly adheres to a 'Dark Mode' aesthetic with glassmorphism effects and performance-first CSS.",
         tags: [".Next.js 15", "React 19", "Tailwind v4", "Framer Motion", "EmailJS", "Lucide React"],
         link: "https://github.com/fasilahammed/rabbit-portfolia.git",
-        demo: "https://fasilahammed.github.io/portfolio/",
+        demo: "https://fasilahammed.netlify.app/",
         image: "/portfolio_new.png",
         year: "2026"
     }
