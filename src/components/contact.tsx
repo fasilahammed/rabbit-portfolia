@@ -67,7 +67,7 @@ export const Contact = () => {
                         <div className="space-y-8">
                             <ContactItem icon={<Mail />} label="Email Structure" value="ahamedahamed1883@gmail.com" />
                             <ContactItem icon={<MapPin />} label="Base of Operations" value="Kerala, India" />
-                            <ContactItem icon={<Phone />} label="Comms Channel" value="+91 9946 811 493" />
+                            <ContactItem icon={<Phone />} label="Comms Channel" value="+91 9946 811 493" href="https://wa.me/919946811493" />
                         </div>
                     </motion.div>
 
@@ -162,14 +162,25 @@ export const Contact = () => {
     );
 };
 
-const ContactItem = ({ icon, label, value }: { icon: any, label: string, value: string }) => (
+const ContactItem = ({ icon, label, value, href }: { icon: any, label: string, value: string, href?: string }) => (
     <div className="flex items-center gap-6">
         <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-emerald-400 border border-white/10">
             {icon}
         </div>
         <div>
             <p className="text-[10px] text-gray-500 font-mono tracking-widest uppercase mb-1">{label}</p>
-            <p className="text-white font-medium text-lg">{value}</p>
+            {href ? (
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white font-medium text-lg hover:text-emerald-400 transition-colors"
+                >
+                    {value}
+                </a>
+            ) : (
+                <p className="text-white font-medium text-lg">{value}</p>
+            )}
         </div>
     </div>
 );

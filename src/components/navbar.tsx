@@ -42,14 +42,6 @@ export const Navbar = () => {
                         <ArrowUpRight className="w-4 h-4" />
                     </motion.div>
                 </a>
-
-                {/* Grid Icon (Menu Toggle) */}
-                <button className="grid grid-cols-2 gap-[3px] group p-1">
-                    <div className="w-1.5 h-1.5 bg-white group-hover:bg-gray-400 group-hover:scale-90 transition-all duration-300" />
-                    <div className="w-1.5 h-1.5 bg-white group-hover:bg-gray-400 group-hover:scale-90 transition-all duration-300 delay-75" />
-                    <div className="w-1.5 h-1.5 bg-white group-hover:bg-gray-400 group-hover:scale-90 transition-all duration-300 delay-100" />
-                    <div className="w-1.5 h-1.5 bg-white group-hover:bg-gray-400 group-hover:scale-90 transition-all duration-300 delay-150" />
-                </button>
             </div>
         </nav>
     );
